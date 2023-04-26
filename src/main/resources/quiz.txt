@@ -1,0 +1,21 @@
+#1
+What is output of 2 + (3 * 2) ?
+1. 10
+2. 6
+3. 8
+4. 12
+Ans: 3
+#2
+Which not valid primitive data type in Java?
+1. int
+2. bool
+3. float
+4. double
+Ans: 2
+#3
+What is output of (3 + 2) + 2 ?
+1. 10
+2. 6
+3. 8
+4. 12
+Ans: 3
