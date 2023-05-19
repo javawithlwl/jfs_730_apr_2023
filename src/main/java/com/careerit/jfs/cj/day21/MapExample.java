@@ -13,6 +13,6 @@ public class MapExample {
         map.put(1003, "Charan");
         map.put(1004, "Tanvi");
         map.put(1001,"Krishna");
-    System.out.println(map);
+        System.out.println(map);
   }
 }
