@@ -5,11 +5,15 @@
     <groupId>com.careerit</groupId>
     <artifactId>jfs</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>jfs_730_apr_2023</name>
     <description>Learning Java from CareerIT</description>
+    <modules>
+        <module>learning-jdbc</module>
+    </modules>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
