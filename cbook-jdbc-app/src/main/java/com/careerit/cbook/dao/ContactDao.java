@@ -16,4 +16,9 @@ public interface ContactDao {
   boolean deleteContact(long id);
 
   Optional<Contact> selectContact(long id);
+
+  boolean isContactExists(String mobile);
+
+  List<Contact> selectAllContacts();
+  List<Contact> insertContacts(List<Contact> contacts);
 }
