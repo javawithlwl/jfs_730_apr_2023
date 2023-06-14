@@ -11,6 +11,8 @@
     <modules>
         <module>learning-jdbc</module>
         <module>cbook-jdbc-app</module>
+        <module>spring-core</module>
+        <module>common-util</module>
     </modules>
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
