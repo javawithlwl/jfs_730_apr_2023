@@ -30,6 +30,8 @@ public class ContactDaoImpl implements ContactDao {
       }
     } catch (SQLException e) {
       System.out.println("While adding contact " + e);
+    }finally{
+      ConnectionUtil.close(pst,con);
     }
     return contact;
   }
