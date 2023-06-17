@@ -24,6 +24,26 @@ public class ContactDaoImpl implements ContactDao {
   }
 
   @Override
+  public Contact updateContact(Contact contact) {
+    return null;
+  }
+
+  @Override
+  public boolean deleteContact(long id) {
+    return false;
+  }
+
+  @Override
+  public List<Contact> search(String str) {
+    return null;
+  }
+
+  @Override
+  public void insertContacts(List<Contact> contacts) {
+
+  }
+
+  @Override
   public Contact insertContact(Contact contact) {
     KeyHolder keyHolder = new GeneratedKeyHolder();
     jdbcTemplate.update((con)->{

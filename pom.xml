@@ -14,6 +14,8 @@
         <module>spring-core</module>
         <module>common-util</module>
         <module>spring-boot-learning</module>
+        <module>spring-jdbc-learning</module>
+        <module>player-stats</module>
     </modules>
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
