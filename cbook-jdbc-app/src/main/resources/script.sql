@@ -1,0 +1,1 @@
+create table contact(id bigserial primary key, name varchar(250) not null,email varchar(250) not null,mobile varchar(10) unique);

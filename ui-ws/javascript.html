@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">CareerIT</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">JavaScript</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">ContactBook</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+            <div class="row mt-2">
+                   <div class="col">
+                    <h5 class="text-center">EMI Calculator</h5>
+                    <div id="idEmiForm">
+                        <div class="mb-2">
+                          <label for="amount" class="form-label">Amount</label>
+                          <input type="number" class="form-control" id="amount" aria-describedby="amountHelp">
+                          <div id="amountHelp" class="form-text">Please enter the principal amount</div>
+                        </div>
+                        <div class="mb-2">
+                            <label for="rate" class="form-label">Rate of Interest</label>
+                            <input type="number" class="form-control" id="rate" aria-describedby="rateHelp">
+                            <div id="rateHelp" class="form-text">Please enter Rate of Interest (%)</div>
+                          </div>
+                          <div class="mb-2">
+                            <label for="months" class="form-label">Months</label>
+                            <input type="number" class="form-control" id="months" aria-describedby="monthsHelp">
+                            <div id="monthsHelp" class="form-text">Please enter the number of months</div>
+                          </div>
+                          <div class="mb-2">
+                                <button type="submit" class="btn btn-primary" onclick="calculateEmi()">Calculate EMI</button>
+                        </div>
+                        <div class="mb-2">
+                                <div id="showResult"></div>
+                        </div>
+                    </div>
+                   </div> 
+                   <div class="col">
+                            <img src="img/on.png" id="idBulb"/>
+                            <div class="mt-1">
+                                <button type="button" class="btn btn-primary" onclick="switchOn()">Switch On/Off</button>
+                            </div>
+                            
+                   </div> 
+                   <div class="col">
+                    <div class="mb-2">
+                        <label for="number" class="form-label">Enter the number</label>
+                        <input type="number" class="form-control" id="idNumber">
+                      </div>  
+                      <div class="mb-2">
+                        <button type="button" class="btn btn-primary" id="idFactorial">Factorial</button>
+                        <button type="button" class="btn btn-primary" id="idReverse">Reverse</button>
+                        <button type="button" class="btn btn-primary" id="idSumOfDigits">SumOfDigits</button>
+                        <button type="button" class="btn btn-primary" id="idFibonacci">Fibonacci</button>
+                   </div>
+                   <div class="mb-2">
+                    <label for="number" class="form-label">Result</label>
+                    <input type="number" class="form-control" id="idResult" disabled>
+                  </div>  
+                </div>
+
+                <div class="row mt-3">
+
+                        <div class="col-sm-6 offset-sm-3">
+                            <div class="mb-2">
+                                  <input type="text" class="form-control" id="idSearch" placeholder="Enter the name to search">
+                              </div>  
+                                 
+                        </div>
+                        <div class="col-sm-8 offset-sm-2">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                          <th scope="col">#</th>
+                                          <th scope="col">First Name</th>
+                                          <th scope="col">Last Name</th>
+                                          <th scope="col">Email</th>
+                                          <th scope="col">Gender</th>
+                                          <th scope="col">IP Address</th>
+                                      
+                                        </tr>
+                                      </thead>
+                                      <tbody id="idTableBody">
+                                     </tbody>
+                                </table>
+                        </div>
+
+                </div>
+                  
+            </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+      <script src="js/main.js"></script>
+</body>
+</html>

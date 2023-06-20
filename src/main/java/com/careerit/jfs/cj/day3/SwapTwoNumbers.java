@@ -14,3 +14,4 @@ public class SwapTwoNumbers {
       System.out.println("After swap a = "+a +" and b = "+b);
   }
 }
+

@@ -5,11 +5,21 @@
     <groupId>com.careerit</groupId>
     <artifactId>jfs</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>jfs_730_apr_2023</name>
     <description>Learning Java from CareerIT</description>
+    <modules>
+        <module>learning-jdbc</module>
+        <module>cbook-jdbc-app</module>
+        <module>spring-core</module>
+        <module>common-util</module>
+        <module>spring-boot-learning</module>
+        <module>spring-jdbc-learning</module>
+        <module>player-stats</module>
+    </modules>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -24,5 +34,15 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.13.3</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
+   </dependencies>
 </project>

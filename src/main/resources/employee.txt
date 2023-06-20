@@ -1,0 +1,6 @@
+empno,name,salary,comm
+1001,Krish,5000,500
+1002,Nani,4000,2000
+1003,Charan,8000,1500
+1004,Hemanth,12000,500
+1005,Manoj,6000,0
