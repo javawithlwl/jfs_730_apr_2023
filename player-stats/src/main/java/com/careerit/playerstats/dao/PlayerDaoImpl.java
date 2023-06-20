@@ -3,15 +3,13 @@ package com.careerit.playerstats.dao;
 import com.careerit.playerstats.domain.Player;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -21,6 +19,11 @@ public class PlayerDaoImpl implements PlayerDao {
   private final JdbcTemplate jdbcTemplate;
   private final String INSERT_PLAYER = "insert into player_details(name,team,country,role,amount) values(?,?,?,?,?)";
   private final String SELECT_PLAYER_BY_ID = "select * from player_details where id = ?";
+  private final String SELECT_ALL_PLAYERS = "select id,name,team,role,country,amount from player_details";
+  private final String DELETE_PLAYER_BY_ID = "delete from player_details where id = ?";
+  private final String UPDATE_PLAYER = "update player_details set name = ?,team = ?,country = ?,role = ?,amount = ? where id = ?";
+  private final String SEARCH_PLAYER = "select id,name,team,role,country,amount from player_details where name like ? or team like ? or role like ? or country like ?";
+
   @Override
   public Player insertPlayer(Player player) {
     KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -40,7 +43,7 @@ public class PlayerDaoImpl implements PlayerDao {
 
   @Override
   public List<Player> selectPlayers() {
-    return null;
+    return jdbcTemplate.query(SELECT_ALL_PLAYERS, playerRowMapper);
   }
 
   @Override
@@ -54,22 +57,29 @@ public class PlayerDaoImpl implements PlayerDao {
 
   @Override
   public Player updatePlayer(Player player) {
-    return null;
+    jdbcTemplate.update(UPDATE_PLAYER, player.getName(), player.getTeam(), player.getCountry(), player.getRole(), player.getAmount(), player.getId());
+    return getPlayerById(player.getId());
   }
 
   @Override
   public boolean deletePlayer(long id) {
-    return false;
+    return jdbcTemplate.update(DELETE_PLAYER_BY_ID, id) != 0;
   }
 
   @Override
   public List<Player> search(String str) {
-    return null;
+    String likeStr = "%" + str + "%";
+    return jdbcTemplate.query(SEARCH_PLAYER, new Object[]{likeStr, likeStr, likeStr, likeStr}, playerRowMapper);
   }
 
   @Override
-  public int insertPlayers(List<Player> players) {
-    return 0;
+  public List insertPlayers(List<Player> players) {
+    List<Player> list = new ArrayList<>();
+    for (Player player : players) {
+      list.add(insertPlayer(player));
+    }
+    ;
+    return list;
   }
 
   private RowMapper<Player> playerRowMapper = (rs, rowNum) -> {

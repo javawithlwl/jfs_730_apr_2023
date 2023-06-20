@@ -12,11 +12,11 @@ public interface PlayerService {
 
   PlayerDto getPlayerById(long id);
 
-  PlayerDto updatePlayer(Player player);
+  PlayerDto updatePlayer(PlayerDto player);
 
   boolean deletePlayer(long id);
 
   List<PlayerDto> search(String str);
 
-  int addPlayers(List<PlayerDto> players);
+  List<PlayerDto> addPlayers(List<PlayerDto> players);
 }

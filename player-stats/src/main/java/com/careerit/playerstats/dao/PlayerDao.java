@@ -12,5 +12,5 @@ public interface PlayerDao {
         Player updatePlayer(Player player);
         boolean deletePlayer(long id);
         List<Player> search(String str);
-        int insertPlayers(List<Player> players);
+        List<Player> insertPlayers(List<Player> players);
 }
