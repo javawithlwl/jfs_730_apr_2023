@@ -16,6 +16,7 @@
         <module>spring-boot-learning</module>
         <module>spring-jdbc-learning</module>
         <module>player-stats</module>
+        <module>spring-jpa-learning</module>
     </modules>
     <properties>
         <maven.compiler.source>19</maven.compiler.source>

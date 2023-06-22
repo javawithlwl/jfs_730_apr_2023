@@ -3,8 +3,7 @@ spring:
     url: jdbc:postgresql://dpg-chncg4u4dad1d51vem90-a.oregon-postgres.render.com:5432/jsf_may_2023
     username: dbuser
     password: 1HnWkrn3bIQUkkSfcnwk7gW8YW3nJIWy
-server:
-  port: 8081
-news:
-  api:
-    key: cfaf5fcdebfb4d7293720a9aa6ffc113
+  jpa:
+    show-sql: true
+    properties:
+      format_sql: true
