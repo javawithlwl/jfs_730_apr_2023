@@ -6,4 +6,4 @@ spring:
   jpa:
     show-sql: true
     properties:
-      format_sql: true
+       format_sql: true

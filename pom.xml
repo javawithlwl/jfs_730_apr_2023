@@ -17,7 +17,7 @@
         <module>spring-jdbc-learning</module>
         <module>player-stats</module>
         <module>spring-jpa-learning</module>
-        <module>ipl-stats</module>
+        <module>ipl-jun-stats</module>
     </modules>
     <properties>
         <maven.compiler.source>19</maven.compiler.source>

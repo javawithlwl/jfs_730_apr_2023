@@ -5,7 +5,7 @@ idInput.addEventListener('keyup', function(e){
             let input = idInput.value;
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "Bearer ${apiKeys}");
+            myHeaders.append("Authorization", "Bearer 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");
 
             var raw = JSON.stringify({
             "model": "text-davinci-003",
