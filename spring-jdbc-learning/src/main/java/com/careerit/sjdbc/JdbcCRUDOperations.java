@@ -1,24 +1,19 @@
 package com.careerit.sjdbc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @Repository
+@Slf4j
 public class JdbcCRUDOperations {
 
 
@@ -38,8 +33,10 @@ public class JdbcCRUDOperations {
       pst.setDouble(2, 45000.00);
       return pst;
     }, keyHolder);
-    long id = keyHolder.getKey().longValue();
-    System.out.println("Generated key is :" + id);
+    if(keyHolder.getKey() != null){
+      long id = keyHolder.getKey().longValue();
+      log.info("Generated key is :{} ",id);
+    }
   }
 
   // get players data
@@ -50,7 +47,7 @@ public class JdbcCRUDOperations {
 
   public List<Player> getPlayers(String teamName) {
     String sql = "select name,role,amount,country,team from player where team = ?";
-    return jdbcTemplate.query(sql, new Object[]{teamName}, new PlayerMapper());
+    return jdbcTemplate.query(sql, new PlayerMapper(),teamName);
   }
 
   public List<String> getTeamName() {

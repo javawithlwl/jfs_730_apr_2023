@@ -1,5 +1,6 @@
 package com.careerit.sjdbc;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootApplication
+@Slf4j
 public class SpringJdbcLearningApplication implements CommandLineRunner {
 
 	@Autowired
@@ -28,6 +30,6 @@ public class SpringJdbcLearningApplication implements CommandLineRunner {
 //
 //		System.out.println(jdbcCRUDOperations.getPlayerCountOfEachTeam());
 
-		System.out.println(jdbcCRUDOperations.getPlayers("RCB","Batsman"));
+		log.info("{}",jdbcCRUDOperations.getPlayers("RCB","Batsman"));
 	}
 }

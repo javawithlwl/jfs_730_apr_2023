@@ -1,6 +1,5 @@
 package com.careerit.sjdbc;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
