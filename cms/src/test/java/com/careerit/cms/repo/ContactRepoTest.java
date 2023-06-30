@@ -40,6 +40,15 @@ public class ContactRepoTest {
     Assertions.assertEquals(3, existingContacts.size(), "Contacts are not added");
   }
 
+  @Test
+  void searchTest(){
+    List<Contact> contacts = getMultipleContacts();
+    contacts = contactRepo.saveAll(contacts);
+    List<Contact> existingContacts = contactRepo.search(".*sh.*");
+    existingContacts.stream().forEach(contact -> System.out.println(contact.getName()));
+    Assertions.assertEquals(1, existingContacts.size(), "Contacts are not added");
+  }
+
   private Contact getContact() {
     Contact contact = new Contact();
     contact.setName("Krish");

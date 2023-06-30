@@ -3,7 +3,9 @@ package com.careerit.cms.service;
 import com.careerit.cms.domain.Contact;
 import com.careerit.cms.dto.ContactDto;
 import com.careerit.cms.exception.ContactExistsException;
+import com.careerit.cms.exception.ContactNotFoundException;
 import com.careerit.cms.repo.ContactRepo;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,31 +42,58 @@ public class ContactServiceImpl implements  ContactService{
 
   @Override
   public List<ContactDto> getAllContacts() {
-    return null;
+    List<Contact> contactList = contactRepo.findAll();
+    log.info("Contact count is  : {}",contactList.size());
+    return objectMapper.convertValue(contactList, new TypeReference<List<ContactDto>>() {});
   }
 
   @Override
   public ContactDto updateContact(ContactDto contactDto) {
-    return null;
+    Assert.notNull(contactDto,"Contact can't be null");
+    Assert.notNull(contactDto.getId(),"Id can't be null");
+    Contact contact = objectMapper.convertValue(contactDto, Contact.class);
+    contact = contactRepo.save(contact);
+    ContactDto updatedContact = objectMapper.convertValue(contact, ContactDto.class);
+    log.info("Contact is updated with id : {}",updatedContact.getId());
+    return updatedContact;
   }
 
   @Override
   public void deleteContact(String id) {
-
+    if(contactRepo.existsById(id)){
+      contactRepo.deleteById(id);
+      log.info("Contact with id : {} is deleted",id);
+    }else {
+      log.error("Contact with id : {} not found",id);
+      throw new ContactNotFoundException("Contact with id : " + id + " not found");
+    }
   }
-
   @Override
   public ContactDto getContactById(String id) {
-    return null;
+    Assert.notNull(id,"Id can't be null");
+    Contact contact = contactRepo.findById(id)
+        .orElseThrow(() -> {
+          log.error("Contact with id : {} not found", id);
+          return new ContactNotFoundException("Contact with id : " + id + " not found");
+        });
+    log.info("Contact with id : {} is found",id);
+    return objectMapper.convertValue(contact, ContactDto.class);
   }
 
   @Override
   public List<ContactDto> search(String str) {
-    return null;
+    Assert.notNull(str,"Search string can't be null");
+    List<Contact> contactList = contactRepo.search(".*"+str+".*");
+    log.info("Contact count is  : {}",contactList.size());
+    return objectMapper.convertValue(contactList, new TypeReference<List<ContactDto>>() {});
   }
 
   @Override
   public List<ContactDto> addContacts(List<ContactDto> contactDtoList) {
-    return null;
+    Assert.notNull(contactDtoList,"Contact list can't be null");
+    List<Contact> contactList = objectMapper.convertValue(contactDtoList, new TypeReference<List<Contact>>() {});
+    contactList = contactRepo.saveAll(contactList);
+    log.info("Contact count is  : {}",contactList.size());
+    return objectMapper.convertValue(contactList, new TypeReference<List<ContactDto>>() {});
   }
 }
