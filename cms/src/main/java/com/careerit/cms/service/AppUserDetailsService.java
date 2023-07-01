@@ -1,34 +1,27 @@
 package com.careerit.cms.service;
 
-import jakarta.annotation.PostConstruct;
- import lombok.RequiredArgsConstructor;  
- import org.springframework.security.core.userdetails.User;  
- import org.springframework.security.core.userdetails.UserDetails;  
- import org.springframework.security.core.userdetails.UserDetailsService;  
- import org.springframework.security.core.userdetails.UsernameNotFoundException;  
- import org.springframework.security.crypto.password.PasswordEncoder;  
- import org.springframework.stereotype.Service;  
- import java.util.ArrayList;  
- import java.util.List;  
+import com.careerit.cms.dto.AppUser;
+import com.careerit.cms.repo.AppUserRepo;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
  @Service  
  @RequiredArgsConstructor  
  public class AppUserDetailsService implements UserDetailsService {  
-  private final PasswordEncoder passwordEncoder;  
-  private List<UserDetails> userDetails;  
-  @PostConstruct  
-  public void init() {  
-   userDetails = new ArrayList<>(List.of(  
-     User.withUsername("user")  
-       .password(passwordEncoder.encode("user@123")).authorities("ROLE_USER").build(),  
-     User.withUsername("admin")  
-       .password(passwordEncoder.encode("admin@123")).authorities("ROLE_ADMIN").build()  
-   ));  
-  }  
+  private final PasswordEncoder passwordEncoder;
+  private final AppUserRepo appUserRepo;
+
   @Override  
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {  
-   return userDetails.stream()  
-     .filter(user -> user.getUsername().equals(username))  
-     .findFirst()  
-     .orElseThrow(() -> new UsernameNotFoundException("User not found with given username"));  
-  }  
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+   AppUser appUser = appUserRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("User not found with username : "+username));
+   return User.builder()
+       .username(appUser.getUsername())
+       .password(appUser.getPassword())
+       .authorities(appUser.getRoles().stream().map(ele->new SimpleGrantedAuthority(ele)).toList()).build();
+  }
  }  
