@@ -5,7 +5,7 @@ idInput.addEventListener('keyup', function(e){
             let input = idInput.value;
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "Bearer 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");
+            myHeaders.append("Authorization", "Bearer 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");
 
             var raw = JSON.stringify({
             "model": "text-davinci-003",
@@ -39,3 +39,26 @@ idInput.addEventListener('keyup', function(e){
     }
 });
 
+// generate function to check given nubmer is prime or not
+
+function isPrime(n){
+    if(n<=1){
+        return false;
+    }
+    for(let i=2; i<n; i++){
+        if(n%i === 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+function gcd(a,b){
+    if(b === 0){
+        return a;
+    }
+    return gcd(b, a%b);
+}
+function biggestOfThreeNumbers(a,b,c){
+    return a > b && a>c ? a : b>c ? b : c;
+}
