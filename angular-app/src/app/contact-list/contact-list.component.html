@@ -1,0 +1,7 @@
+<div class="col-md-8 offset-md-2">
+
+        <ul>
+            <li *ngFor="let contact of contacts"><a [routerLink]="['/contact',contact.id]">{{contact.firstName +" "+ contact.lastName}}</a></li>
+        </ul>
+    
+</div>

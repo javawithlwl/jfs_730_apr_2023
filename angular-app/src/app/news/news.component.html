@@ -1,0 +1,27 @@
+
+<div class="col-md-8 offset-2">
+    <div class="input-group mb-3">
+    <select class="form-select" aria-label="Contry name select" [(ngModel)]="country" (change)="latestNewItems()">
+        <option value="us">USA</option>
+        <option value="in">India</option>
+        <option value="ca">Canada</option>
+        <option value="sg">Singapore</option>
+      </select>
+      &nbsp;
+      <select class="form-select" aria-label="News type select" [(ngModel)]="newsType" (change)="latestNewItems()">
+        <option value="business">Business</option>
+        <option value="sports">Sprots</option>
+        <option value="health">Health</option>
+      </select>
+    </div>
+</div>
+<div class="col-md-8 offset-md-2 mt-2 mb-2" *ngFor="let newsItem of newsItems">
+    <div class="card">
+        <img [src]=newsItem.imgUrl class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{newsItem.title}}</h5>
+          <p class="card-text">{{newsItem.description}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+</div>
